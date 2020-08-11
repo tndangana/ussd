@@ -8,7 +8,6 @@ export const ussd = async (req: Request, res: Response, next: NextFunction) => {
     const SESSION_END = "END "
     const venueSer = venueService();
     const movieSrv = movieService();
-    let name: string[] = [];
     let response = ``
 
     let { phoneNumber, sessionId, serviceCode, text }: any = req.body;
@@ -51,7 +50,6 @@ export const ussd = async (req: Request, res: Response, next: NextFunction) => {
     
         Select Time You Want To Watch The Movie`;
         res.send(response);
-        console.log(`txt[length - 1] === '1'--->`, txt);
     }
 
     //watching  Avengers at SK JOINA AT Three
@@ -182,9 +180,8 @@ export const ussd = async (req: Request, res: Response, next: NextFunction) => {
     }
 
 
-    else if (txt[1] === '1'  && length === 5) {
+    else if (txt[1] === '1' && length === 5) {
 
-        console.log(`value is --->${txt[length - 1]}`)
         response = `${SESSION_CONTINUE} You Are about to buy ${txt[length - 1]} tickets.
         Press\n
         1.To Pay\n
@@ -198,8 +195,6 @@ export const ussd = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     else if (txt[1] === '2' && length === 5) {
-
-        console.log(`value is --->${txt[length - 1]}`)
         response = `${SESSION_CONTINUE} You Are about to buy ${txt[length - 1]} tickets.
         Press\n
         1.To Pay\n
@@ -209,27 +204,25 @@ export const ussd = async (req: Request, res: Response, next: NextFunction) => {
 
         response = `${SESSION_END} An Sms to confirm payment will be sent to ${phoneNumber}`
         res.send(response);
-
     }
 
-
     else if (text === '2') {
-        const list: any[] = [];
-        (await movieSrv.findAll()).map(({ id, title }: any) => {
-            let body = { id, title };
-            return body;
-        }).forEach(x => {
-            list.push(x);
-        });
-        console.log(JSON.stringify(list).toUpperCase())
         let response = `${SESSION_END} Available Movies\n
-        1. ${list[0].title}\n
-        2. ${list[1].title}\n
-        3. ${list[2].title}\n
-      
+        1. Last Vegas\n
+        2. Terminator\n
+        3. Avengers End Game\n
+        4. Charlies Angel
         `
         res.send(response);
     }
+
+
+    else if (text === '3') {
+        let response = `${SESSION_END} They are no promotions as of now.\nDo keep on checking`
+        res.send(response);
+    }
+
+
     else {
         response = `${SESSION_END} Can't do shit`;
     }
