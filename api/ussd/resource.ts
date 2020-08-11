@@ -226,17 +226,4 @@ export const ussd = async (req: Request, res: Response, next: NextFunction) => {
     else {
         response = `${SESSION_END} Can't do shit`;
     }
-
-
-
-
 }
-
-//   // add device
-//   else if (text === '1') {
-//     // check if user is agent
-//   	message = 'CON Enter device IMEI number';
-//   }
-//   else if (length === 2 && txt[0] === '1') {
-//     message = 'CON Enter device color';
-//   }
