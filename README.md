@@ -9,6 +9,6 @@
  1. npm install
  2. npm run dev to run project.
  3. post man to interact with API(S)
- 4. For ussd invoking regiALKING AND USE THEIR SIMULATOR
+ 4. For ussd invoking register on Africas Talking And Use Their Simulator
 
 
